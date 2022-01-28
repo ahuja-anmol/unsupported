@@ -37,6 +37,8 @@
         <p>Window width: <span id="width"></span></p>
         <p>screen height: <span id="height2"></span></p>
         <p>screen width: <span id="width2"></span></p>
+         <p>window outer height: <span id="height3"></span></p>
+        <p>window outer width: <span id="width3"></span></p>
         <p id="demo"></p>
     </center>
     <center>
@@ -48,16 +50,22 @@
         const widthOutput = document.querySelector('#width');
         const heightOutput2 = document.querySelector('#height2');
         const widthOutput2 = document.querySelector('#width2');
+        const heightOutput3 = document.querySelector('#height3');
+        const widthOutput3 = document.querySelector('#width3');
         reportWindowSize();
         function reportWindowSize() {
             var wh = window.innerHeight;
             var ww = window.innerWidth;
             var sh = screen.height;
             var sw = screen.width;
+            var woh = window.outerHeight;
+            var wow = window.outerWidth;
             heightOutput.textContent = wh;
             widthOutput.textContent = ww;
             heightOutput2.textContent = sh;
             widthOutput2.textContent = sw;
+            heightOutput3.textContent = woh;
+            widthOutput3.textContent = wow;
             if (ww < Math.abs( sw-20)) {
                 document.getElementById("demo").innerText = "split";
                 
