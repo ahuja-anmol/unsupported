@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unsupported DEMO</title>
+<style>
+    center{
+        margin-top:20%;
+    font-size:18px;
+        }
+    .unsupportedDevice, .landscape {
+        height: 100px;
+        width: 100px;
+        display: none;
+    }
+    body.unsupported .unsupportedDevice, body.landscapeError .landscape {
+        display: block;
+    }
+   /* @media screen and (max-width: 250px), (max-height:250px) {
+        .unsupportedDevice{
+            display:block;
+        }
+    }
+    @media screen and (max-width:600px) and (orientation:portrait){
+       .landscape{
+           display:block;
+       }
+    }
+       */
+</style>
+</head>
+<body class="">
+    <center>
+        <p>Resize the browser window to fire the <code>resize</code> event.</p>
+        <p>Window height: <span id="height"></span></p>
+        <p>Window width: <span id="width"></span></p>
+        <p>screen height: <span id="height2"></span></p>
+        <p>screen width: <span id="width2"></span></p>
+        <p id="demo"></p>
+    </center>
+    <center>
+        <img src="error.svg" class="unsupportedDevice" />
+        <img src="landscape.svg" class="landscape" />
+    </center>
+    <script>
+        const heightOutput = document.querySelector('#height');
+        const widthOutput = document.querySelector('#width');
+        const heightOutput2 = document.querySelector('#height2');
+        const widthOutput2 = document.querySelector('#width2');
+        reportWindowSize();
+        function reportWindowSize() {
+            var wh = window.innerHeight;
+            var ww = window.innerWidth;
+            var sh = screen.height;
+            var sw = screen.width;
+            heightOutput.textContent = wh;
+            widthOutput.textContent = ww;
+            heightOutput2.textContent = sh;
+            widthOutput2.textContent = sw;
+            if (ww < Math.abs( sw-20)) {
+                document.getElementById("demo").innerText = "split";
+                
+            }
+            if (sw < 250 || sh < 250 || (sh < 510 && sw < 510)) {
+                document.body.classList.add("unsupported");
+            }
+            else if (wh < 500 && ww < 900)
+            {
+                if (Math.abs(ww - sh) < 30 && Math.abs(wh - sw) < 30) {
+                    document.body.classList.add("landscapeError");
+                }
+                if (ww < Math.abs(sw *.9)) {
+                    document.getElementById("demo").innerText = "split";
+
+                }
+            }
+            
+
+            else {
+                document.body.classList.remove("unsupported");
+            }
+           
+        }
+        //unsupported 
+        //split screen
+        //landscape
+
+        window.onresize = reportWindowSize;
+    </script>
+</body>
+</html>
