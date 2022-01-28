@@ -52,42 +52,34 @@
         <img src="landscape.svg" class="landscape" />
     </center>
     <script>
-        const heightOutput = document.querySelector('#height');
+       const heightOutput = document.querySelector('#height');
         const widthOutput = document.querySelector('#width');
         const heightOutput2 = document.querySelector('#height2');
         const widthOutput2 = document.querySelector('#width2');
-        const heightOutput3 = document.querySelector('#height3');
-        const widthOutput3 = document.querySelector('#width3');
         reportWindowSize();
         function reportWindowSize() {
             var wh = window.innerHeight;
             var ww = window.innerWidth;
             var sh = screen.height;
             var sw = screen.width;
-            var woh = window.outerHeight;
-            var wow = window.outerWidth;
             heightOutput.textContent = wh;
             widthOutput.textContent = ww;
             heightOutput2.textContent = sh;
             widthOutput2.textContent = sw;
-            heightOutput3.textContent = woh;
-            widthOutput3.textContent = wow;
-            if (ww < Math.abs( sw-20)) {
-                document.getElementById("demo").innerText = "split";
-                
-            }
             if (sw < 250 || sh < 250 || sh < 510 && sw < 510) {
                 document.body.classList.add("unsupported");
             }
             else if (wh < 500 && ww < 900)
             {
-                if (Math.abs(ww - sh) < 30 && Math.abs(wh - sw) < 30) {
-                    document.body.classList.add("landscapeError");
-                }
-                if (ww < Math.abs(sw *.9)) {
-                    document.getElementById("demo").innerText = "split";
+                if (ww < Math.abs(sw - 40)) {
+                    swap(sh, sw);
 
                 }
+                if (Math.abs(ww - sh) < 30 && Math.abs(wh - sw) < 30) {
+                    document.getElementById("demo").innerText = "landscape";                }
+                if (ww < Math.abs(sw *.9)) {
+                    document.getElementById("demo").innerText = "split";
+                   }
             }
             
 
@@ -95,6 +87,11 @@
                 document.body.classList.remove("unsupported");
             }
            
+        }
+        function swap(a, b) {
+            a = a + b;
+            b = a - b;
+            a = a - b;
         }
         //unsupported 
         //split screen
