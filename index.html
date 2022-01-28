@@ -76,7 +76,7 @@
                 document.getElementById("demo").innerText = "split";
                 
             }
-            if (sw < 250 || sh < 250 || (sh < 510 && sw < 510)) {
+            if (sw < 250 || sh < 250 || sh < 510 && sw < 510) {
                 document.body.classList.add("unsupported");
             }
             else if (wh < 500 && ww < 900)
